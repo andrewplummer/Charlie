@@ -1,0 +1,93 @@
+<!doctype>
+<html>
+  <head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Toasty</title>
+  <style type="text/css">
+
+  html {
+    overflow: hidden;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .outer {
+  width: 400px;
+  margin: 30px auto;
+  font-size: 18px;
+  text-align: center;
+  }
+
+  .buttons button {
+  font-size: 18px;
+  }
+
+  .images .active {
+    background-color: #efdfcf;
+  }
+
+  .images span {
+    padding: 4px;
+    cursor: pointer;
+  }
+
+  </style>
+
+  </head>
+  <body>
+    <div class="outer">
+      <h1>Toasty for jQuery</h1>
+      <div class="images">
+        <span class="random_image active">Random</span>
+      </div>
+      <p><a href="toasty.zip">Get the code</a></p>
+      <div class="buttons">
+        <button class="random_sound">Random</button>
+      </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <script src="charlie.js"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        var buttons = $('.buttons');
+        var images = $('.images');
+        var currentImage;
+
+        $.each($.winning.images, function(i, name){
+          var image = $('<span>'+name+'</span>');
+          image.click(function(){
+            currentImage = name;
+            $('span', images).removeClass('active');
+            image.addClass('active');
+          });
+          images.append(image);
+        });
+
+        $.each($.winning.sounds, function(i, name){
+          var button = $('<button>'+name+'</button>');
+          button.click(function(){
+            console.log(name, currentImage);
+            $.winning({ sound: name, image: currentImage });
+          });
+          buttons.append(button);
+        });
+
+        $('.random_sound').click(function(){
+          $.winning({ image: currentImage });
+        });
+
+        $('.random_image').click(function(){
+            currentImage = null;
+            $('span', images).removeClass('active');
+            $(this).addClass('active');
+        });
+      });
+
+    </script>
+
+  </body>
+</html>
