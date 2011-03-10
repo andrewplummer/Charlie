@@ -146,7 +146,7 @@ var charlieSheenPath;
 })(jQuery);
 
 
-(function(){
+(function($){
 
   var method;
   var supported;
