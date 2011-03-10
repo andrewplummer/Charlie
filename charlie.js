@@ -127,8 +127,8 @@ var charlieSheenPath;
   }
 
   function initialize(){
-    imagePreload = $('<div id="charlie_preload"/>').appendTo(document.body).css({ position: 'absolute', left: -20000 });
-    charlie = $('<img id="charlie_sheen_winning"/>').appendTo(document.body).css({ display: 'block', position: 'absolute', bottom: -1000, zIndex: 50000 });
+    imagePreload = $('<div id="charlie_preload"/>').appendTo(document.body).css({ position: 'fixed', left: -20000 });
+    charlie = $('<img id="charlie_sheen_winning"/>').appendTo(document.body).css({ display: 'block', position: 'fixed', bottom: -1000, zIndex: 50000 });
     $.winning = winning;
     $.winning.images = images;
     $.winning.sounds = sounds;
