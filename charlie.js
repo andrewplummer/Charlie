@@ -128,7 +128,7 @@ var charlieSheenPath;
 
   function initialize(){
     imagePreload = $('<div id="charlie_preload"/>').appendTo(document.body).css({ position: 'absolute', left: -20000 });
-    charlie = $('<img id="charlie_sheen_winning"/>').appendTo(document.body).css({ display: 'block', position: 'absolute', bottom: -1000 });
+    charlie = $('<img id="charlie_sheen_winning"/>').appendTo(document.body).css({ display: 'block', position: 'absolute', bottom: -1000, zIndex: 50000 });
     $.winning = winning;
     $.winning.images = images;
     $.winning.sounds = sounds;
@@ -162,7 +162,7 @@ var charlieSheenPath;
       $(document).ready(soundPlayerReady);
     } else if(checkFlashSupport()){
       method = 'flash';
-      embedFlash();
+      embedFlashDOM();
       callbacks = {};
       $(document).bind('audio_played', function(event, url){
         if(callbacks[url]) callbacks[url](url);
@@ -211,6 +211,20 @@ var charlieSheenPath;
       '<param name="movie" value="'+swfURL+'" />' +
       '</object>';
     document.write(html);
+  }
+
+  function embedFlashDOM(){
+    var clsid = 'clsid:D27CDB6E-AE6D-11cf-96B8-444553540000';
+    var swfURL = charlieSheenPath + 'sound.swf';
+    var html = (typeof ActiveXObject === 'undefined')
+    ? '<object id="sound_player" width="1" height="1" type="application/x-shockwave-flash" data="'+swfURL+'">' +
+      '<param name="allowscriptaccess" value="always" />' +
+      '</object>'
+    : '<object id="sound_player" width="1" height="1" type="application/x-shockwave-flash" classid="'+clsid+'" data="'+swfURL+'">' +
+      '<param name="allowscriptaccess" value="always" />' +
+      '<param name="movie" value="'+swfURL+'" />' +
+      '</object>';
+    $(document.body).append(html);
   }
 
   function playAudio(url, callback){
