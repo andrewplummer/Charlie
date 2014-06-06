@@ -70,7 +70,7 @@
       if(imageLoaded && audioLoaded) {
         setTimeout(function() {
           play();
-        }, 1);
+        }, 200);
       }
     }
 
