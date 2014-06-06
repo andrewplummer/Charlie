@@ -78,7 +78,7 @@
     imageEl.src = imageUrl;
     imageEl.style.display = 'block';
     imageEl.style.position = 'fixed';
-    imageEl.style.right = '10%';
+    imageEl.style.right = Math.floor(Math.random() * 100) + '%';
     imageEl.style.bottom = '-1000px';
     imageEl.style.zIndex = '50000';
     imageEl.onload = function() {
