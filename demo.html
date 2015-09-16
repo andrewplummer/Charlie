@@ -38,7 +38,6 @@
   </head>
   <body>
     <div class="outer">
-      <h1>Toasty for jQuery</h1>
       <div class="images">
         <span class="random_image active">Random</span>
       </div>
@@ -46,48 +45,9 @@
       <div class="buttons">
         <button class="random_sound">Random</button>
       </div>
+      <a href="javascript:var s=document.createElement('script');s.setAttribute('src','https://rawgithub.com/andrewplummer/Charlie/master/charlie-lite.js?237&image=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fimages%2Fscott.png&sound=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fsounds%2Ftoasty.mp3');document.getElementsByTagName('body')[0].appendChild(s);">Bookmarklet</a>
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-    <script src="charlie.js"></script>
-    <script type="text/javascript">
-
-      $(document).ready(function(){
-
-        var buttons = $('.buttons');
-        var images = $('.images');
-        var currentImage;
-
-        $.each($.winning.images, function(i, name){
-          var image = $('<span>'+name+'</span>');
-          image.click(function(){
-            currentImage = name;
-            $('span', images).removeClass('active');
-            image.addClass('active');
-          });
-          images.append(image);
-        });
-
-        $.each($.winning.sounds, function(i, name){
-          var button = $('<button>'+name+'</button>');
-          button.click(function(){
-            console.log(name, currentImage);
-            $.winning({ sound: name, image: currentImage });
-          });
-          buttons.append(button);
-        });
-
-        $('.random_sound').click(function(){
-          $.winning({ image: currentImage });
-        });
-
-        $('.random_image').click(function(){
-            currentImage = null;
-            $('span', images).removeClass('active');
-            $(this).addClass('active');
-        });
-      });
-
-    </script>
-
+    <script src="charlie-lite.js?image=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fimages%2Fscott.png&sound=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fsounds%2Ftoasty.mp3"></script>
   </body>
 </html>
