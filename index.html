@@ -14,10 +14,15 @@
   }
 
   .outer {
-  width: 550px;
+  width: 620px;
   margin: 30px auto;
   font-size: 18px;
   text-align: center;
+  }
+
+  .buttons {
+    width: 550px;
+    margin: 0px auto;
   }
 
   .buttons button {
@@ -50,8 +55,16 @@
     color: #732;
   }
 
-  pre .attribute {
+  pre .winning {
     color: green;
+    cursor: help;
+  }
+
+  pre .comment {
+    float: right;
+    width: 250px;
+    height: 1em;
+    color: #aaa;
   }
 
   .twitter,.facebook {
@@ -83,7 +96,13 @@
       <div class="get" title="Just download, unzip, and link to the script.">
         <p class="download"><a href="charlie.zip">Get the code</a></p>
         <pre>
-  &lt;script type="<span class="attribute">text/javascript</span>" src="<span class="attribute">path/to/charlie.js</span>"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="<span title="include jQuery" class="winning">path/to/jquery.js</span>"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="<span title="include Charlie" class="winning">path/to/charlie.js</span>"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  <span title="&quot;bi-winning&quot; sound with random image" class="winning">$.winning({ sound: 'bi-winning' });</span>
+  <span title="&quot;crazy&quot; image with random sound" class="winning">$.winning({ image: 'crazy' });</span>
+  <span title="both random" class="winning">$.winning();</span>
+&lt;/script&gt;
         </pre>
       </div>
       <div class="social">
@@ -96,7 +115,7 @@
         </div>
       </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="charlie/charlie.js"></script>
     <script type="text/javascript">
 
