@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title>Toasty</title>
+  <title>Charlie</title>
   <style type="text/css">
 
   html {
@@ -14,14 +14,24 @@
   }
 
   .outer {
-  width: 400px;
+  width: 620px;
   margin: 30px auto;
   font-size: 18px;
   text-align: center;
   }
 
+  .buttons {
+    width: 550px;
+    margin: 0px auto;
+  }
+
   .buttons button {
   font-size: 18px;
+  margin: 1px;
+  }
+
+  .images {
+    margin: 20px 0px;
   }
 
   .images .active {
@@ -33,21 +43,125 @@
     cursor: pointer;
   }
 
+  .download {
+    margin: 30px 0px;
+  }
+
+  pre {
+    font-size: 16px;
+    margin: 5px 0px 20px 0px;
+    padding: 0;
+    text-align: left;
+    color: #732;
+  }
+
+  pre .winning {
+    color: green;
+    cursor: help;
+  }
+
+  pre .comment {
+    float: right;
+    width: 250px;
+    height: 1em;
+    color: #aaa;
+  }
+
+  .twitter,.facebook {
+    display: inline-block;
+  }
+
+  .twitter {
+    margin-left: 50px;
+  }
+
+  .facebook {
+    margin-left: 30px;
+    position: relative;
+    top: 5px;
+  }
+
   </style>
 
   </head>
   <body>
     <div class="outer">
+      <h1>"Charlie" for jQuery</h1>
       <div class="images">
-        <span class="random_image active">Random</span>
+        <span class="random_image active">random</span>
       </div>
-      <p><a href="toasty.zip">Get the code</a></p>
       <div class="buttons">
-        <button class="random_sound">Random</button>
+        <button class="random_sound">random</button>
       </div>
-      <a href="javascript:var s=document.createElement('script');s.setAttribute('src','https://rawgithub.com/andrewplummer/Charlie/master/charlie-lite.js?237&image=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fimages%2Fscott.png&sound=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fsounds%2Ftoasty.mp3');document.getElementsByTagName('body')[0].appendChild(s);">Bookmarklet</a>
+      <div class="get" title="Just download, unzip, and link to the script.">
+        <p class="download"><a href="charlie.zip">Get the code</a></p>
+        <pre>
+&lt;script type="text/javascript" src="<span title="include jQuery" class="winning">path/to/jquery.js</span>"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="<span title="include Charlie" class="winning">path/to/charlie.js</span>"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  <span title="&quot;bi-winning&quot; sound with random image" class="winning">$.winning({ sound: 'bi-winning' });</span>
+  <span title="&quot;crazy&quot; image with random sound" class="winning">$.winning({ image: 'crazy' });</span>
+  <span title="both random" class="winning">$.winning();</span>
+&lt;/script&gt;
+        </pre>
+      </div>
+      <div class="social">
+        <div class="twitter">
+          <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="l_andrew_l">Tweet</a>
+          <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        </div>
+        <div class="facebook">
+          <div id="fb-root"></div>
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=189795071129074";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+        </div>
+      </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-    <script src="charlie-lite.js?image=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fimages%2Fscott.png&sound=https%3A%2F%2Fraw.githubusercontent.com%2Fandrewplummer%2FCharlie%2Fmaster%2Fsounds%2Ftoasty.mp3"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="charlie/charlie.js"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        var buttons = $('.buttons');
+        var images = $('.images');
+        var currentImage;
+
+        $.each($.winning.images, function(i, name){
+          var image = $('<span>'+name+'</span>');
+          image.click(function(){
+            currentImage = name;
+            $('span', images).removeClass('active');
+            image.addClass('active');
+          });
+          images.append(image);
+        });
+
+        $.each($.winning.sounds, function(i, name){
+          var button = $('<button>'+name+'</button>');
+          button.click(function(){
+            $.winning({ sound: name, image: currentImage });
+          });
+          buttons.append(button);
+        });
+
+        $('.random_sound').click(function(){
+          $.winning({ image: currentImage });
+        });
+
+        $('.random_image').click(function(){
+            currentImage = null;
+            $('span', images).removeClass('active');
+            $(this).addClass('active');
+        });
+      });
+
+    </script>
+
   </body>
 </html>
